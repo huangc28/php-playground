@@ -3,7 +3,6 @@ require_once(__DIR__."/../../../../../vendor/autoload.php");
 
 use Symfony\Component\Filesystem\Filesystem;
 use Intervention\Image\Image;
-// use Image;
 
 /**
  * Requirements:
@@ -123,7 +122,6 @@ class FileSplitter
 					$fileName
 				);
 			}
-			$this->parseTo($filePath);
 			closedir($dh);
 		}
 		else
@@ -170,7 +168,7 @@ class FileSplitter
 	/**
 	 *
 	 *
-	 *
+	 * 
 	 */
 	protected function matchSize($path)
 	{
