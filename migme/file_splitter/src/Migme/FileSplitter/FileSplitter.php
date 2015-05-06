@@ -139,7 +139,6 @@ class FileSplitter
 
 			// we need to check for file extension before copy it
 			if($this->imageValidator( $from ))
-			// if( $this->matchMimeType($from) && $this->matchSize())
 			{
 				$this->filesystem->copy($from, $to);	
 			}
@@ -165,7 +164,7 @@ class FileSplitter
 	protected function matchMimeType($path)
 	{
 		$ext = pathinfo($path, PATHINFO_EXTENSION);
-		return (in_array($ext, FileSplitter::$extPattern)) ? true : false;
+		return (in_array($ext, self::$extPattern)) ? true : false;
 	}
 
 	/**
