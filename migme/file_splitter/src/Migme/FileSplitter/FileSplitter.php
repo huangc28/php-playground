@@ -12,9 +12,15 @@ use Intervention\Image\Image;
  */
 class FileSplitter
 {
+	
 	protected static $size = 16;
 	protected static $extPattern = array(
 			'png'
+		);
+
+	protected static $errorMsg = array(
+			1	=>	'Source path does not exist or it not specified'
+			2	=>	''
 		);
 
    /**
@@ -82,7 +88,8 @@ class FileSplitter
 
 		if(!$this->filesystem->exists($this->getSourcePath())) 
 		{
-			throw new \Exception("Source path does not exist or it not specified");
+			$this->composeError();
+			// throw new \Exception("Source path does not exist or it not specified");
 		}
 
 		if( $dh = opendir($this->getSourcePath()) )
@@ -140,10 +147,19 @@ class FileSplitter
 			{
 				$this->filesystem->copy($from, $to);	
 			}
-			
+			else
+			{
+
+			}
 		}
 	}
 
+	/**
+	 * Check image mimeType and size.
+	 *
+	 * @param string $imgPath
+	 * @return boolean
+	 */
 	protected function imageValidator( $imgPath )
 	{
 		if( $this->matchMimeType($imgPath) )
@@ -159,7 +175,7 @@ class FileSplitter
 	 * @param string $path
 	 * @return boolean 
 	 */
-	protected function matchMimeType($path)
+	protected function matchMimeType( $path )
 	{
 		$ext = pathinfo($path, PATHINFO_EXTENSION);
 		return (in_array($ext, self::$extPattern)) ? true : false;
