@@ -28,10 +28,7 @@ class JiraApiTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Test retrieving Jira api token. Retrieve single task.
-	 *
-	 * Test 1:
-	 * 		
+	 * Test retrieving Jira api token. Retrieve single task. 		
 	 */
 	public function test_init_cpliakas()
 	{	
